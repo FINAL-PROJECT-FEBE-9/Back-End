@@ -8,7 +8,7 @@ const {
   deletebantuanByID,
   updatebantuanByID,
   login,
-} = require("../controllers/bantuan.controller");
+} = require("../controller/bantuan.controller");
 
 router.get("/", getAllbantuan);
 router.get("/:id", getbantuanByID);

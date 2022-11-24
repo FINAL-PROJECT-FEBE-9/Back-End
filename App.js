@@ -1,7 +1,11 @@
 const express = require('express')
-const db = require('./config/db')
 const app = express()
 
+const allRoutes = require('./routes')
+
+app.use(allRoutes)
+
+const db = require('./config/db')
 app.use(express.json())
 
 db.then(() => {

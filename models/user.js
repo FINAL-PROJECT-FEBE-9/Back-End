@@ -19,13 +19,12 @@ const userSchema = new Schema({
     image: {
         type: String,
     },
-    status: {
+    role: {
         type: String,
         enum: ['Admin', 'User']
     },
     token: {
-        type: String,
-        required: [true, 'Token belum ada']
+        type: String
     }
 })
 
