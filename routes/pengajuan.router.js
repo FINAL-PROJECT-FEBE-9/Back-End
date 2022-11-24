@@ -3,17 +3,19 @@ const router = express.Router();
 
 const {
   getAllPengajuan,
-  addBantuan,
+  getPengajuanByID,
   addPengajuan,
-  addStatus,
-  addUser
+  updatePengajuan,
+  updateStatusPengajuan,
+  deletePengajuan
 } = require("../controller/pengajuan.controller");
 
 router.get("/", getAllPengajuan);
-router.post("/bantuan", addBantuan);
-router.post("/pengajuan", addPengajuan)
-router.post("/status", addStatus)
-router.post("/user", addUser)
+router.get("/:id", getPengajuanByID);
+router.post("/", addPengajuan)
+router.put("/:id", updatePengajuan)
+router.put("/admin/:id", updateStatusPengajuan)
+router.delete("/:id", deletePengajuan)
 
 
 module.exports = router;

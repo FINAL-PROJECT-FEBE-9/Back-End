@@ -1,81 +1,127 @@
 const Pengajuan = require('../models/pengajuan')
-const Bantuan = require('../models/Bantuan')
-const User = require('../models/User')
-const Status = require('../models/status')
+const User = require('../models/user')
 
 module.exports = {
     getAllPengajuan: async (req, res) => {
-        const pengajuan = await Todo.find().populate("user", "name")
+        try{
+            const pengajuan = await Pengajuan.find()
+            const user_data = await User.find()
 
-        res.json({
-            message: "berhasil mendapatkan pengajuan",
-            data : pengajuan
-        })
+            res.status(200).json({
+                status:200,
+                message: "berhasil mendapatkan data pengajuan",
+                data : pengajuan, user_data
+            })
+        }catch(err){
+            res.status(404).json({
+                status: 404,
+                message: "not found"
+            })
+        }
+        
     },
-    addBantuan: async (req, res) => {
-        const { nama_bantuan,description,image_bantuan,id_mitra,id_jb } = req.body 
+
+    getPengajuanByID: async (req, res) => {
+        try{
+            const { id } = req.params
+            const pengajuan = await Pengajuan.findById(id)
+
+            res.status(200).json({
+                status:200,
+                message: "berhasil mendapatkan pengajuan",
+                data: pengajuan
+            })
+        }catch(err){
+            res.status(404).json({
+                status:404,
+                message: "not found",
+            })
+        }
        
-        const bantuan = await Bantuan.create({
-           nama_bantuan,
-           description,
-           image_bantuan,
-           id_mitra,
-           id_jb
-        })
+    }, 
 
-        res.status(201).json({
-            data: bantuan,
-            message: "bantuan has been created"
-        })
-    },
     addPengajuan: async (req, res) => {
-        const {dokumen, id_user, id_bantuan, status} = req.body
+        try{
+            const {dokumen, id_user, id_bantuan, status} = req.body
 
-        const pengajuan = await Pengajuan.create({
-            dokumen,
-            id_user,
-            id_bantuan,
-            status
-        })
+            const pengajuan = await Pengajuan.create({
+                dokumen,
+                id_user,
+                id_bantuan,
+                status
+            })
+            
+            res.status(201).json({
+                status: 201,
+                message: "pengajuan has been created",
+                data: pengajuan
+            })
+        }catch(err){
+            res.status(401).json({
+                status: 401,
+                message: "failed create data"
+            })
+        }
         
-        res.status(201).json({
-            data: pengajuan,
-            message: "pengjuan has been created"
-        })
     },
 
-    addStatus: async (req, res) =>{
-        
-        const { nama_status } = req.body
-       
-        const status = await Status.create({
-             nama_status
-        })
+    updatePengajuan: async (req, res) => {
+        try{
+            const { id } = req.params
+            const result = await Pengajuan.findByIdAndUpdate(id, 
+                {dokumen : req.body.dokumen})
 
-        
-        res.status(201).json({
-            data: status,
-            message: "status has been created"
-        })
+            res.status(202).json({
+                status: 202,
+                message: "berhasil update pengajuan",
+                data: result
+            })
+
+        }catch(err){
+            res.status(404).json({
+                status:404,
+                message: "not found",
+            })
+        }   
     },
-    addUser: async (req, res) => {
-        console.log("ini dari add user")
-        const {username, email, password, image, role} = req.body
 
-        const user = await User.create(
-            {
-                username,
-                email,
-                password,
-                image,
-                role
-            }
-        )
+    updateStatusPengajuan: async (req, res) => {
+        try{
+            const { id } = req.params
 
+            const result = await Pengajuan.findByIdAndUpdate(id, 
+                {status: req.body.status})
+
+            res.status(201).json({
+                status: 201,
+                message: "status has been updated",
+                data: result
+            })
+        }catch(err){
+            res.status(404).json({
+                status:404,
+                message: "not found",
+            })
+        }  
+    },
+
+    deletePengajuan: async (req, res) => {
+        try{
+            const { id } = req.params
+            
+            const pengajuan = await Pengajuan.findByIdAndDelete(id)
+
+            res.status(200).json({
+                status: 200,
+                message: "pengajuan berhasil dihapus",
+                data: pengajuan
+            })
+        }catch(err){
+            res.status(404).json({
+                status:404,
+                message: "not found",
+            })
+        }
         
-        res.status(201).json({
-            data: user,
-            message: "user has been created"
-        })
     }
 }
