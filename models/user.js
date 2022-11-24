@@ -25,7 +25,7 @@ const userSchema = new Schema({
     },
     token: {
         type: String,
-        required: [true, 'Token belum ada']
+        required: [false, 'Token belum ada']
     }
 })
 
