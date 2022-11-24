@@ -24,7 +24,8 @@ const userSchema = new Schema({
         enum: ['Admin', 'User']
     },
     token: {
-        type: String
+        type: String,
+        required: [false, 'Token belum ada']
     }
 })
 

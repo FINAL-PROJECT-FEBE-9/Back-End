@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router()
 
-// const bantuanRouter = require('./bantuan.router');
-const pengajuanRouter = require('./pengajuan.router')
+const bantuanRouter = require('./bantuan.router');
+const dummyrouter = require('./dummy.router');
 
-// router.use("/bantuan" ,bantuanRouter)
-router.use("/pengajuan", pengajuanRouter)
+console.log("masuk ke index routes");
+router.use("/bantuan" ,bantuanRouter)
+router.use("/dummy" ,dummyrouter)
 
 module.exports = router

@@ -17,8 +17,8 @@ const pengajuanSchema = new Schema({
         ref: "Bantuan"
     },
     status: {
-        type: mongoose.ObjectId,
-        ref: "Status"
+        type: String,
+        enum: ['Menunggu diseleksi', 'Ditolak', 'Diseleksi', 'Dikirim']
     }
 })
 
