@@ -26,7 +26,7 @@ module.exports= {
 
             res.status(200).json({
                 status:200,
-                message: "berhasil mendapatkan data mitra",
+                message: `berhasil mendapatkan data mitra dengan id ${id}`,
                 data: mitra
             })
         }catch(err){
@@ -39,6 +39,14 @@ module.exports= {
     addMitra: async (req, res) => {
         try{
             const {nama_mitra, image_mitra} = req.body
+
+            const isMitraExist = await Mitra.findOne( {nama_mitra} )
+
+            if(isMitraExist){
+                return res.status(409).json({
+                    message: "Mitra Already Exist!"
+                })
+            }
 
             const mitra = await Mitra.create({
                 nama_mitra,
@@ -68,7 +76,7 @@ module.exports= {
 
             res.status(201).json({
                 status: 201,
-                message: "mitra has been updated",
+                message: `mitra berhasil diupdate dengan id ${id}`,
                 data: result
             })
         }catch(err){
@@ -86,7 +94,7 @@ module.exports= {
 
             res.status(200).json({
                 status: 200,
-                message: "pengajuan berhasil dihapus",
+                message: `pengajuan dengan id ${id} berhasil dihapus`,
                 data: mitra
             })
         }catch(err){
