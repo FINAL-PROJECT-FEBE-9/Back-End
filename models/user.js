@@ -26,6 +26,10 @@ const userSchema = new Schema({
     token: {
         type: String,
         required: [false, 'Token belum ada']
+    },
+    role: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Role"
     }
 })
 
