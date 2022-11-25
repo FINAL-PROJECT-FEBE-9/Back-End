@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const { authentication, authorizationForAdmin, authorizationForUser } = require('../middlewares/auth')
 
 const {
   create,
@@ -11,8 +12,8 @@ const {
 
 router.get("/", list)
 router.get("/:id", detail)
-router.post("/", create);
-router.put("/:id", update);
-router.delete("/:id", deleteData);
+router.post("/", authentication, authorizationForAdmin, create);
+router.put("/:id", authentication, authorizationForAdmin, update);
+router.delete("/:id", authentication, authorizationForAdmin, deleteData);
 
 module.exports = router;
