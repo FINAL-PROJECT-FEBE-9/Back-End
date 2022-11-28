@@ -8,7 +8,8 @@ const {
   addjenis,
   addmitra,
   addbantuan,
-  addpengajuan
+  addpengajuan,
+  addrole
 } = require("../controller/dummy.controller");
 
 
@@ -18,7 +19,7 @@ router.post("/addjenis", addjenis);
 router.post("/addmitra", addmitra);
 router.post("/addbantuan", addbantuan);
 router.post("/addpengajuan", addpengajuan);
-
+router.post("/addrole", addrole);
 
 
 module.exports = router;

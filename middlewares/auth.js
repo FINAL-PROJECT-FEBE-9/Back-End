@@ -1,17 +1,19 @@
 const  jwt = require("jsonwebtoken");
 const { getUserById } = require("../controller/auth.repository");
-const { CustomError } = require("../errors/customError");
 
 const authentication = async function(req, res, next) {
   const token = req.headers.authorization;
 
   try {
     jwt.verify(token, process.env.JWT_SECRET);
-
+    
     next();
   } catch (error) {
-    throw new CustomError('the token is invalid', 'TOKEN_INVALID', 403);
-  }
+    res.status(403).json({
+      status: 403,
+      message: "Anda belum Login",
+    });
+  };
 };
 
 const authorizationForAdmin = async function(req, res, next) {
@@ -20,7 +22,13 @@ const authorizationForAdmin = async function(req, res, next) {
   const user = await getUserById(decode.user_id);
 
   if (user.role.name !== 'Admin') {
-    throw new Error()
+    res.status(401).json({
+      status: 401,
+      message: "Anda tidak memiliki akses",
+    });
+  }
+  else {
+    next();
   }
 };
 
@@ -29,7 +37,7 @@ const authorizationForUser = async function(req, res, next) {
   const decode = jwt.decode(token);
   const user = await getUserById(decode.user_id);
 
-  if (user.role.name !== 'Admin') {
+  if (user.role.name !== 'User') {
     throw new Error()
   }
 };

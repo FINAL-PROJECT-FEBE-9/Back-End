@@ -9,13 +9,14 @@ const {
     Updateuser,
     Deleteuser
 } = require("../controller/user.controller");
+const { authentication, authorizationForAdmin } = require('../middlewares/auth')
 
 
 router.post("/create", Register);
-router.get("/", Getalluser);
-router.get("/:id", Getuserbyid);
-router.put("/:id", Updateuser);
-router.delete("/:id", Deleteuser)
+router.get("/", authentication, authorizationForAdmin, Getalluser);
+router.get("/:id", authentication, Getuserbyid);
+router.put("/:id",authentication, Updateuser);
+router.delete("/:id",authentication, authorizationForAdmin,  Deleteuser)
 
 
 

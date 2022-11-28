@@ -3,6 +3,7 @@ const bantuan = require("../models/bantuan")
 const jenis = require("../models/jenis_bantuan")
 const mitra = require("../models/mitra")
 const pengajuan = require("../models/pengajuan")
+const Role = require("../models/role")
 
 
 module.exports = {
@@ -11,12 +12,24 @@ module.exports = {
         {username: "hafizh", email:"hafizh@gmail.com",password:"123",
         image:"https://image.com",status:"Admin"},
         {username: "coba", email:"coba@gmail.com",password:"123",
-        image:"https://image.com",status:"User"}
+        image:"https://image.com",status:"User", Role:"User"},
     ])
     res.json({
       message: "user has been created"
     })
   },
+  adduser: (req, res) => {
+    user.insertMany([
+        {username: "KhalifH", email:"aaliyahk@gmail.com",password:"123",
+        image:"https://image.com",status:"Admin",role:"6384716e9409dc06558fd9f6"},
+        {username: "pengguna", email:"coba2@gmail.com",password:"123",
+        image:"https://image.com",status:"User",role:"6384716e9409dc06558fd9f5"}
+    ])
+    res.json({
+      message: "user has been created"
+    })
+  },
+
   getalldata: async (req,res) => {
     const Mitra =  await mitra.find().populate("nama_mitra")
     res.json({
@@ -66,6 +79,17 @@ module.exports = {
     res.json({
       message: "pengajuan has been created"
     })
+
+    
   },
 
+  addrole: (req, res) => {
+    Role.insertMany([
+        {name:"User"},
+        {name:"Admin"}
+    ])
+    res.json({
+      message: "ROLE has been created"
+    })
+  }
 }
