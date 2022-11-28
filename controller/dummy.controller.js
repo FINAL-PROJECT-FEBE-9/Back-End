@@ -3,22 +3,22 @@ const bantuan = require("../models/bantuan")
 const jenis = require("../models/jenis_bantuan")
 const mitra = require("../models/mitra")
 const pengajuan = require("../models/pengajuan")
-
+const Role = require("../models/role")
 
 module.exports = {
   adduser: (req, res) => {
     user.insertMany([
-        {username: "hafizh", email:"hafizh@gmail.com",password:"123",
-        image:"https://image.com",status:"Admin"},
-        {username: "coba", email:"coba@gmail.com",password:"123",
-        image:"https://image.com",status:"User"}
+        {username: "KhalifH", email:"aaliyahk@gmail.com",password:"123",
+        image:"https://image.com",status:"Admin",role:"63847376397f1330130be34e"},
+        {username: "pengguna", email:"coba2@gmail.com",password:"123",
+        image:"https://image.com",status:"User",role:"63847376397f1330130be34e"}
     ])
     res.json({
       message: "user has been created"
     })
   },
   getalldata: async (req,res) => {
-    const Mitra =  await mitra.find().populate("nama_mitra")
+    const Mitra =  await user.find().populate("username")
     res.json({
         message: "success get data",
         data: Mitra
@@ -49,7 +49,9 @@ module.exports = {
         id_jb:"637ef8c674a59cf7a7978ea7"},
         {nama_bantuan: "bantuan vaksin+peralatan" , description: "merupakan bantuan pasca covid",
         image_bantuan:"https://bantuan.com",id_mitra:"637ef9c269e9624decc71d5a",
-        id_jb:"637ef8c674a59cf7a7978ea8"}
+        id_jb:"637ef8c674a59cf7a7978ea8"},
+        {nama_bantuan: "bantuan jasmani dan rohani", description: "merupakan bantuan mental",
+        image_bantuan: "inigambar.com",  id_mitra: "637ef9c269e9624decc71d5b", id_jb:"637ef8c674a59cf7a7978ea8"}
         
     ])
     res.json({
@@ -67,5 +69,13 @@ module.exports = {
       message: "pengajuan has been created"
     })
   },
-
+  addRole: (req, res) => {
+    Role.insertMany([
+        {name:"User"},
+        {name:"Admin"}
+    ])
+    res.json({
+      message: "ROLE has been created"
+    })
+  },
 }
