@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const { CustomError } = require("../errors/customError");
 const { register, getUserByUsername, getUserById, updateRole } = require("./auth.repository");
 const { getRoleByName } = require('./role.repository')
+require('dotenv').config()
 
 module.exports = {
   info: async function (req,res) {
@@ -14,7 +15,15 @@ module.exports = {
       token: token
     })
   },
-
+  info2 : async function (req,res) {
+    const token = req.headers.authorization;
+    const decode = jwt.decode(token);
+    console.log("")
+    res.status(200).json({
+      message: "sudah masuk"
+    })
+  },
+ 
   register: async function (req, res) {
     if (req.body.role !== null && req.body.role !== '') {
       req.body.role = (await getRoleByName(req.body.role))._id

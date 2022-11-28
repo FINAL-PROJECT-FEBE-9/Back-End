@@ -8,15 +8,17 @@ const {
   addjenis,
   addmitra,
   addbantuan,
-  addpengajuan
+  addpengajuan,
+  addrole
 } = require("../controller/dummy.controller");
 
 
 router.post("/adduser", adduser);
 router.get("/", getalldata)
-router.post("/addjenis", addjenis);
-router.post("/addmitra", addmitra);
+// router.post("/addjenis", addjenis);
+// router.post("/addmitra", addmitra);
 router.post("/addbantuan", addbantuan);
+router.post("/addrole", addrole);
 router.post("/addpengajuan", addpengajuan);
 
 

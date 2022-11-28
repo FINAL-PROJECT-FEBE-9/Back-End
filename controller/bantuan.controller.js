@@ -1,5 +1,4 @@
 const bantuan = require("../models/bantuan");
-const User = require("../models/user");
 
 module.exports = {
   getAllbantuan: async (req, res) => {
@@ -83,7 +82,6 @@ module.exports = {
       try{
         const data = req.body;
         const bantuanid = req.params.id;
-        console.log("sudah masuk sini");
         await bantuan.findByIdAndUpdate(bantuanid,data);
         const cekupdate = await bantuan.findById(bantuanid)
             res.status(200).json({

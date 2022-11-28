@@ -19,10 +19,6 @@ const userSchema = new Schema({
     image: {
         type: String,
     },
-    status: {
-        type: String,
-        enum: ['Admin', 'User']
-    },
     token: {
         type: String,
         required: [false, 'Token belum ada']
