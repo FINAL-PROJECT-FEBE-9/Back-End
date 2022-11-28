@@ -9,18 +9,17 @@ const {
   addmitra,
   addbantuan,
   addpengajuan,
-  addrole
+  addRole
 } = require("../controller/dummy.controller");
 
 
 router.post("/adduser", adduser);
 router.get("/", getalldata)
-// router.post("/addjenis", addjenis);
-// router.post("/addmitra", addmitra);
+router.post("/addjenis", addjenis);
+router.post("/addmitra", addmitra);
 router.post("/addbantuan", addbantuan);
-router.post("/addrole", addrole);
 router.post("/addpengajuan", addpengajuan);
-router.post("/addrole", addrole);
+router.post("/addrole", addRole)
 
 
 module.exports = router;

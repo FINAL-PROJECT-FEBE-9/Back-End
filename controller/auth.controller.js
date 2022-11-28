@@ -1,7 +1,10 @@
 const jwt = require("jsonwebtoken");
+
 const { CustomError } = require("../errors/customError");
 const { register, getUserByUsername, getUserById, updateRole } = require("./auth.repository");
 const { getRoleByName } = require('./role.repository')
+require('dotenv').config()
+
 require('dotenv').config()
 
 module.exports = {
