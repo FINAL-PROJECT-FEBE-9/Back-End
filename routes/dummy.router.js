@@ -20,7 +20,7 @@ router.get("/", getalldata)
 router.post("/addbantuan", addbantuan);
 router.post("/addrole", addrole);
 router.post("/addpengajuan", addpengajuan);
-
+router.post("/addrole", addrole);
 
 
 module.exports = router;
