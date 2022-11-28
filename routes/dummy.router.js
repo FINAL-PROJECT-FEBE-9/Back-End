@@ -9,9 +9,8 @@ const {
   addmitra,
   addbantuan,
   addpengajuan,
-  addRole
+  addrole
 } = require("../controller/dummy.controller");
-
 
 router.post("/adduser", adduser);
 router.get("/", getalldata)
@@ -19,7 +18,7 @@ router.post("/addjenis", addjenis);
 router.post("/addmitra", addmitra);
 router.post("/addbantuan", addbantuan);
 router.post("/addpengajuan", addpengajuan);
-router.post("/addrole", addRole)
+router.post("/addrole", addrole)
 
 
 module.exports = router;

@@ -10,7 +10,7 @@ const userSchema = new Schema({
     },
     email : {
         type: String,
-        required: [true, 'Email belum dimasukkan']
+        required: [false, 'Email belum dimasukkan']
     },
     password : {
         type: String,

@@ -1,7 +1,7 @@
 const user = require("../models/user")
 const bantuan = require("../models/bantuan")
-// const jenis = require("../models/jenis_bantuan")
-// const mitra = require("../models/mitra")
+const jenis = require("../models/jenis_bantuan")
+const mitra = require("../models/mitra")
 const pengajuan = require("../models/pengajuan")
 const role = require("../models/role")
 
@@ -25,24 +25,24 @@ module.exports = {
         data: Mitra
       })
   },
-  // addjenis: (req, res) => {
-  //   jenis.insertMany([
-  //       { nama_jenis: "pendidikan"},
-  //       { nama_jenis: "kesehatan"}
-  //   ])
-  //   res.json({
-  //     message: "jenis has been created"
-  //   })
-  // },
-  // addmitra: (req, res) => {
-  //   mitra.insertMany([
-  //       {nama_mitra: "skilvul" , image_mitra: "https:/mitra.com"},
-  //       {nama_mitra: "NUS" ,image_mitra: "https:/mitra.com"}
-  //   ])
-  //   res.json({
-  //     message: "Mitra has been created"
-  //   })
-  // },
+  addjenis: (req, res) => {
+    jenis.insertMany([
+        { nama_jenis: "pendidikan"},
+        { nama_jenis: "kesehatan"}
+    ])
+    res.json({
+      message: "jenis has been created"
+    })
+  },
+  addmitra: (req, res) => {
+    mitra.insertMany([
+        {nama_mitra: "skilvul" , image_mitra: "https:/mitra.com"},
+        {nama_mitra: "NUS" ,image_mitra: "https:/mitra.com"}
+    ])
+    res.json({
+      message: "Mitra has been created"
+    })
+  },
   addbantuan: (req, res) => {
     bantuan.insertMany([
         {nama_bantuan: "beasiswa s1" , description: "merupakan beasiswa s1 untuk indonesia",

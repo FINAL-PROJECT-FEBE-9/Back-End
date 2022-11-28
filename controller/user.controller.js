@@ -53,13 +53,14 @@ module.exports = {
 
         try{
             const User = await user.find()
-            res.json({
+
+            res.status(200).json({
                 status : 200,
                 message : "Berhasil ambil list pengguna",
                 data: User
             })
         } catch(err) {
-            res.json({
+            res.status(404).json({
                 status : 404,
                 message : "Gagal ambil list pengguna",
             })
@@ -75,13 +76,13 @@ module.exports = {
                 email : datauser.email,
                 image : datauser.image
             }
-            res.json({
+            res.status(200).json({
                 status : 200, 
                 message : "Berhasil ambil data pengguna",
                 data : result
             })
         } catch(err) {
-            res.json({
+            res.status(404).json({
                 status : 404,
                 message : "Gagal ambil data pengguna"
             })
@@ -100,15 +101,16 @@ module.exports = {
                 email : cekupdate.email,
                 image : cekupdate.image
             }
-            res.json({
+            res.status(200).json({
                 status : 200,
                 message : "Berhasil update data pengguna",
                 data : result
             })
         } catch(err) {
-            res.json({
+            res.status(404).json({
                 status : 404,
-                message : "Gagal merubah data pengguna"
+                message : "Gagal merubah data pengguna",
+                keterangan : err
             })
         }
     },
@@ -119,12 +121,12 @@ module.exports = {
             const hapususer = await user.findById(userid)
             hapususer.remove()
 
-            res.json({
+            res.status(200).json({
                 status : 200,
                 message : "Berhasil hapus data pengguna"
             })
         } catch(err) {
-            res.json({
+            res.status(404).json({
                 status : 404,
                 message : "Gagal hapus data pengguna"
             })
