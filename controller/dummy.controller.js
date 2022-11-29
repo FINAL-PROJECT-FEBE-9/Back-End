@@ -13,7 +13,9 @@ module.exports = {
         {username: "sab", email:"al@gmail.com",password:"123",
         image:"https://image.com",role:"638599e5ab5e883e9e895f07"},
         {username: "gar", email:"far@gmail.com",password:"123",
-        image:"https://image.com",role:"638599c53b9f228a22f97650"}
+        image:"https://image.com",role:"638599c53b9f228a22f97650"},
+        {username: "tesfarhan", email:"far@gmail.com",password:"123",
+        image:"https://image.com",role:"63847376397f1330130be34e"}
     ])
     res.json({
       message: "user has been created"

@@ -6,8 +6,32 @@ module.exports = {
     getAllPengajuan: async (req, res, next) => {
         try{
             const pengajuan = await Pengajuan.find()
-            //bener
-            const user_data = await User.find()
+            const user = await User.find({}, {
+                username: 1,
+                role: 2
+            })
+            // Pengajuan.findOne( user[1] , function(error, story) {
+            //     Pengajuan.user = user;
+            //   });
+            //   Pengajuan.findOne( user[1] , function(Pengajuan) {
+            //     Pengajuan.user = user;
+            //   });
+            //   Pengajuan.
+            //     findOne({ user[1] }).
+            //     populate('user').
+            //     exec(function (err, story) {
+            //       if (err) return handleError(err)
+            //     });
+            
+            let here
+            for(let i = 0; i< user.length-1; i++){
+                const coba = await role.findById(user[i].role)
+                if(coba.name == "User"){
+                    here+=user[i]
+                }
+            }
+
+            console.log(user[1].role)
 
             res.status(200).json({
                 status:200,
