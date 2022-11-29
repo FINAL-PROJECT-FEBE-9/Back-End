@@ -54,11 +54,11 @@ module.exports = {
   addbantuan: (req, res) => {
     bantuan.insertMany([
         {nama_bantuan: "beasiswa s1" , description: "merupakan beasiswa s1 untuk indonesia",
-        image_bantuan:"https://bantuan.com",id_mitra:"637ef9c269e9624decc71d5a",
-        id_jb:"637ef8c674a59cf7a7978ea7"},
+        image_bantuan:"https://bantuan.com",id_mitra:"63859eecb0ed57c0edb74e88",
+        id_jb:"63859f81fdd7e9934cd85c7a"},
         {nama_bantuan: "bantuan vaksin+peralatan" , description: "merupakan bantuan pasca covid",
-        image_bantuan:"https://bantuan.com",id_mitra:"637ef9c269e9624decc71d5a",
-        id_jb:"637ef8c674a59cf7a7978ea8"}
+        image_bantuan:"https://bantuan.com",id_mitra:"63859eecb0ed57c0edb74e89",
+        id_jb:"63859f81fdd7e9934cd85c7b"}
         
     ])
     res.json({
