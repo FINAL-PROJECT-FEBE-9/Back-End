@@ -2,9 +2,6 @@ const User = require('../models/user')
 
 module.exports = {
   register: async function(username, password, role) {
-
-    // const brcyptedPassword =  bcryptjs.hash(password, 10)
-
     return await User.create({
       username: username,
       password: password,
