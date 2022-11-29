@@ -5,18 +5,26 @@ const mitra = require("../models/mitra")
 const pengajuan = require("../models/pengajuan")
 const role = require("../models/role")
 
-
+//all admin,far user
 module.exports = {
   adduser: (req, res) => {
-    user.insertMany([
-        {username: "haf", email:"hafizh@gmail.com",password:"123",
-        image:"https://image.com",status:"Admin",role:"638381059e90a1f5f3a750b5"},
-        {username: "test", email:"coba@gmail.com",password:"123",
-        image:"https://image.com",status:"User",role:"6383812a49f0d0c61ade7aa8"}
+    try{
+      user.insertMany([
+        {username: "al", email:"al@gmail.com",password:"123",
+        image:"https://image.com",role:"638599e5ab5e883e9e895f07"},
+        {username: "far", email:"far@gmail.com",password:"123",
+        image:"https://image.com",role:"638599c53b9f228a22f97650"}
     ])
     res.json({
       message: "user has been created"
     })
+    }catch(err) {
+      res.status.json({
+        message : "Error when add",
+        keterangan : err
+      })
+    }
+    
   },
   getalldata: async (req,res) => {
     const Mitra =  await user.find().populate("username")
@@ -58,12 +66,21 @@ module.exports = {
     })
   },
   addrole: (req, res) => {
-    role.insertMany([
-        {name:"User"}
+    try {
+      role.insertMany([
+        {name:"User"},
+        {name:"Admin"}
     ])
     res.json({
       message: "ROLE has been created"
     })
+    }catch(err) {
+      res.status.json({
+        message : "Error when add",
+        keterangan : err
+      })
+    }
+    
   },
 
   addpengajuan: (req, res) => {
