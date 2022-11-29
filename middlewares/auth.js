@@ -17,10 +17,13 @@ const authentication = async function(req, res, next) {
 };
 
 const authorizationForAdmin = async function(req, res, next) {
-  const token = req.headers.authorization;
+  try{
+    const token = req.headers.authorization;
   const decode = jwt.decode(token);
   const user = await getUserById(decode.user_id);
+  console.log(user);
 
+  
   if (user.role.name !== 'Admin') {
     res.status(401).json({
       status: 401,
@@ -30,6 +33,14 @@ const authorizationForAdmin = async function(req, res, next) {
   else {
     next();
   }
+  }catch(err){
+    res.status(400).json({
+      status:400,
+      message :"Anda bukan User ataupun Admin",
+      Keterangan : err
+    })
+  }
+  
 };
 
 const authorizationForUser = async function(req, res, next) {

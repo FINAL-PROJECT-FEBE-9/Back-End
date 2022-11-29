@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-console.log("Sudah masuk user routes")
+
 const {
     Register,
     Getalluser,

@@ -5,18 +5,26 @@ const mitra = require("../models/mitra")
 const pengajuan = require("../models/pengajuan")
 const role = require("../models/role")
 
-
+//all admin,far user
 module.exports = {
   adduser: (req, res) => {
-    user.insertMany([
-        {username: "haf", email:"hafizh@gmail.com",password:"123",
-        image:"https://image.com",status:"Admin",role:"638381059e90a1f5f3a750b5"},
-        {username: "test", email:"coba@gmail.com",password:"123",
-        image:"https://image.com",status:"User",role:"6383812a49f0d0c61ade7aa8"}
+    try{
+      user.insertMany([
+        {username: "sab", email:"al@gmail.com",password:"123",
+        image:"https://image.com",role:"638599e5ab5e883e9e895f07"},
+        {username: "gar", email:"far@gmail.com",password:"123",
+        image:"https://image.com",role:"638599c53b9f228a22f97650"}
     ])
     res.json({
       message: "user has been created"
     })
+    }catch(err) {
+      res.status.json({
+        message : "Error when add",
+        keterangan : err
+      })
+    }
+    
   },
   getalldata: async (req,res) => {
     const Mitra =  await user.find().populate("username")
@@ -46,11 +54,11 @@ module.exports = {
   addbantuan: (req, res) => {
     bantuan.insertMany([
         {nama_bantuan: "beasiswa s1" , description: "merupakan beasiswa s1 untuk indonesia",
-        image_bantuan:"https://bantuan.com",id_mitra:"637ef9c269e9624decc71d5a",
-        id_jb:"637ef8c674a59cf7a7978ea7"},
+        image_bantuan:"https://bantuan.com",id_mitra:"63859eecb0ed57c0edb74e88",
+        id_jb:"63859f81fdd7e9934cd85c7a"},
         {nama_bantuan: "bantuan vaksin+peralatan" , description: "merupakan bantuan pasca covid",
-        image_bantuan:"https://bantuan.com",id_mitra:"637ef9c269e9624decc71d5a",
-        id_jb:"637ef8c674a59cf7a7978ea8"}
+        image_bantuan:"https://bantuan.com",id_mitra:"63859eecb0ed57c0edb74e89",
+        id_jb:"63859f81fdd7e9934cd85c7b"}
         
     ])
     res.json({
@@ -58,20 +66,29 @@ module.exports = {
     })
   },
   addrole: (req, res) => {
-    role.insertMany([
-        {name:"User"}
+    try {
+      role.insertMany([
+        {name:"User"},
+        {name:"Admin"}
     ])
     res.json({
       message: "ROLE has been created"
     })
+    }catch(err) {
+      res.status.json({
+        message : "Error when add",
+        keterangan : err
+      })
+    }
+    
   },
 
   addpengajuan: (req, res) => {
     pengajuan.insertMany([
-        {dokumen: "https://dokumen.pengajuan" , id_user: "637ef3bc0c72fa152431605a"
-        ,id_bantuan:"637efc18ee3d0960cfe6097b",status:"Menunggu diseleksi"},
-        {dokumen: "https://dokumen.pengajuan" , id_user: "637ef3bc0c72fa152431605b"
-        ,id_bantuan:"637efc18ee3d0960cfe6097c",status:"Diseleksi"}
+        {dokumen: "https://dokumen.pengajuan" , id_user: "63859b928eb2292b32b646ff"
+        ,id_bantuan:"6385a029ca064d92b1553b9e",status:"Menunggu diseleksi"},
+        {dokumen: "https://dokumen.pengajuan" , id_user: "63859b928eb2292b32b646ff"
+        ,id_bantuan:"6385a029ca064d92b1553b9d",status:"Diseleksi"}
     ])
     res.json({
       message: "pengajuan has been created"
