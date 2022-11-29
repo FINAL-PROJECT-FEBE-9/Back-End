@@ -1,19 +1,20 @@
 const Pengajuan = require('../models/pengajuan')
 const User = require('../models/user')
+const role = require('../models/role')
 
 module.exports = {
     getAllPengajuan: async (req, res, next) => {
         try{
             const pengajuan = await Pengajuan.find()
+            //bener
             const user_data = await User.find()
 
             res.status(200).json({
                 status:200,
                 message: "berhasil mendapatkan data pengajuan",
-                data : pengajuan, user_data
+                data : pengajuan
             })
 
-            
         }catch(err){
             res.status(404).json({
                 status: 404,

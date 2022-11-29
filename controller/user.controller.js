@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 
-console.log("Sudah masuk user controller")
+
 module.exports = {
     Register: async (req, res) => {
         try{

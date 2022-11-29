@@ -10,9 +10,9 @@ module.exports = {
   adduser: (req, res) => {
     try{
       user.insertMany([
-        {username: "al", email:"al@gmail.com",password:"123",
+        {username: "sab", email:"al@gmail.com",password:"123",
         image:"https://image.com",role:"638599e5ab5e883e9e895f07"},
-        {username: "far", email:"far@gmail.com",password:"123",
+        {username: "gar", email:"far@gmail.com",password:"123",
         image:"https://image.com",role:"638599c53b9f228a22f97650"}
     ])
     res.json({
@@ -85,10 +85,10 @@ module.exports = {
 
   addpengajuan: (req, res) => {
     pengajuan.insertMany([
-        {dokumen: "https://dokumen.pengajuan" , id_user: "637ef3bc0c72fa152431605a"
-        ,id_bantuan:"637efc18ee3d0960cfe6097b",status:"Menunggu diseleksi"},
-        {dokumen: "https://dokumen.pengajuan" , id_user: "637ef3bc0c72fa152431605b"
-        ,id_bantuan:"637efc18ee3d0960cfe6097c",status:"Diseleksi"}
+        {dokumen: "https://dokumen.pengajuan" , id_user: "63859b928eb2292b32b646ff"
+        ,id_bantuan:"6385a029ca064d92b1553b9e",status:"Menunggu diseleksi"},
+        {dokumen: "https://dokumen.pengajuan" , id_user: "63859b928eb2292b32b646ff"
+        ,id_bantuan:"6385a029ca064d92b1553b9d",status:"Diseleksi"}
     ])
     res.json({
       message: "pengajuan has been created"

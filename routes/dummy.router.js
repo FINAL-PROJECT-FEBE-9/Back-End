@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-console.log("Sudah masuk dummy routes")
 const {
   adduser,
   getalldata,

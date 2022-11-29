@@ -12,6 +12,7 @@ module.exports = {
       res.status(404).json({
         status: 404,
         message: "Gagal load data(endpoint mungkin salah/data belum ada)",
+        keterangan : err
       });
     }
   },
@@ -35,22 +36,24 @@ module.exports = {
       res.status(404).json({
         status: 404,
         message: `Data tidak ditemukan `,
+        keterangan : err
       });
     }
   },
   addbantuan: async (req, res) => {
     const data = req.body;
     try {
-      let tambahdata = await bantuan.create(data);
+      const tambahdata = await bantuan.create(data);
       res.status(201).json({
         status: 201,
         message: `berhasil menambahkan data`,
-        data: tambahdata,
+        // data: tambahdata,
       });
-    } catch {
+    } catch(err) {
       res.status(400).json({
         status: 400,
         message: `Data tidak berhasil ditambahkan`,
+        keterangan: err
       });
     }
   },
@@ -75,6 +78,7 @@ module.exports = {
       res.status(400).json({
         status: 400,
         message: "Gagal hapus data bantuan",
+        keterangan : err
       });
     }
   },
@@ -93,6 +97,7 @@ module.exports = {
         res.status(400).json({
             status: 400,
             message: "Gagal Update data bantuan",
+            keterangan : err
           });
       }
         
