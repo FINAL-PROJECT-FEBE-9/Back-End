@@ -13,9 +13,9 @@ module.exports = {
         {username: "sab", email:"al@gmail.com",password:"123",
         image:"https://image.com",role:"638599e5ab5e883e9e895f07"},
         {username: "gar", email:"far@gmail.com",password:"123",
-        image:"https://image.com",role:"638599c53b9f228a22f97650"},
-        {username: "tesfarhan", email:"far@gmail.com",password:"123",
-        image:"https://image.com",role:"63847376397f1330130be34e"}
+        image:"https://image.com",role:"63847376397f1330130be34d"},
+        {username: "FARHAN", email:"far@gmail.com",password:"123",
+        image:"https://image.com",role:"63847376397f1330130be34d"}
     ])
     res.json({
       message: "user has been created"
@@ -59,6 +59,11 @@ module.exports = {
         image_bantuan:"https://bantuan.com",id_mitra:"63859eecb0ed57c0edb74e88",
         id_jb:"63859f81fdd7e9934cd85c7a"},
         {nama_bantuan: "bantuan vaksin+peralatan" , description: "merupakan bantuan pasca covid",
+        image_bantuan:"https://bantuan.com",id_mitra:"63859eecb0ed57c0edb74e89",
+        id_jb:"63859f81fdd7e9934cd85c7b"},
+
+        // coba yang ini
+        {nama_bantuan: "bantuan psikologi" , description: "merupakan bantuan rohani",
         image_bantuan:"https://bantuan.com",id_mitra:"63859eecb0ed57c0edb74e89",
         id_jb:"63859f81fdd7e9934cd85c7b"}
         

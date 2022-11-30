@@ -1,42 +1,25 @@
 const Pengajuan = require('../models/pengajuan')
 const User = require('../models/user')
-const role = require('../models/role')
 
 module.exports = {
     getAllPengajuan: async (req, res, next) => {
         try{
             const pengajuan = await Pengajuan.find()
-            const user = await User.find({}, {
-                username: 1,
-                role: 2
-            })
-            // Pengajuan.findOne( user[1] , function(error, story) {
-            //     Pengajuan.user = user;
-            //   });
-            //   Pengajuan.findOne( user[1] , function(Pengajuan) {
-            //     Pengajuan.user = user;
-            //   });
-            //   Pengajuan.
-            //     findOne({ user[1] }).
-            //     populate('user').
-            //     exec(function (err, story) {
-            //       if (err) return handleError(err)
-            //     });
-            
-            let here
-            for(let i = 0; i< user.length-1; i++){
-                const coba = await role.findById(user[i].role)
-                if(coba.name == "User"){
-                    here+=user[i]
-                }
-            }
+            const user = await User.find({}).populate({path:"role",match:{name:"User"}}).exec();
+            let data_user = []
 
-            console.log(user[1].role)
+            user.forEach(item => {
+                if(item.role !== null){
+                    data_user.push({username: item.username, id: item.id_bantuan} )
+                }
+            });
+            
 
             res.status(200).json({
                 status:200,
                 message: "berhasil mendapatkan data pengajuan",
-                data : pengajuan
+                data : pengajuan,
+                user : data_user, 
             })
 
         }catch(err){

@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { authentication, authorizationForAdmin, authorizationForUser } = require('../middlewares/auth')
-const {info} = require ('../controller/auth.controller')
+const { authentication, authorizationForAdmin} = require('../middlewares/auth')
 
 const {
   getAllPengajuan,
@@ -16,10 +15,10 @@ const {
 router.get("/",authentication, authorizationForAdmin, getAllPengajuan); 
 router.get("/:user_id",authentication, getPengajuanByUserID)  
 router.get("/:id",authentication,authorizationForAdmin, getPengajuanByID); 
-router.post("/", authentication,addPengajuan)
-router.put("/:id",authentication, authorizationForUser ,updatePengajuan)  
+router.post("/",authentication, addPengajuan)
+router.put("/:id",authentication, updatePengajuan)  
 router.put("/admin/:id",authentication,authorizationForAdmin, updateStatusPengajuan) 
-router.delete("/:id", authentication,deletePengajuan)
+router.delete("/:id",authentication,deletePengajuan)
 
 
 module.exports = router;

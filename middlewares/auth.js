@@ -21,7 +21,6 @@ const authorizationForAdmin = async function(req, res, next) {
     const token = req.headers.authorization;
   const decode = jwt.decode(token);
   const user = await getUserById(decode.user_id);
-  console.log(user);
 
   
   if (user.role.name !== 'Admin') {
@@ -44,13 +43,29 @@ const authorizationForAdmin = async function(req, res, next) {
 };
 
 const authorizationForUser = async function(req, res, next) {
-  const token = req.headers.authorization;
-  const decode = jwt.decode(token);
-  const user = await getUserById(decode.user_id);
 
-  if (user.role.name !== 'Admin') {
-    throw new Error()
-  }
+  try{
+    const token = req.headers.authorization;
+    const decode = jwt.decode(token);
+    const user = await getUserById(decode.user_id);
+
+  
+    if (user.role.name !== 'User') {
+      res.status(401).json({
+        status: 401,
+        message: "ANDA BUKAN USER",
+      });
+    }
+    else {
+      next();
+    }
+    }catch(err){
+      res.status(401).json({
+        status:400,
+        message :"Anda bukan User ataupun Admin",
+        Keterangan : err
+      })
+    }
 };
 
 module.exports = {
