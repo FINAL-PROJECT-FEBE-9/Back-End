@@ -34,7 +34,7 @@ module.exports = {
     getPengajuanByUserID: async (req, res) => {
         try{
             const { user_id } = req.params
-            const pengajuan = await Pengajuan.findOne({id_user : user_id})
+            const pengajuan = await Pengajuan.find({id_user : user_id})
 
             res.status(200).json({
                 status:200,
@@ -94,7 +94,7 @@ module.exports = {
             
         }catch(err){
             res.status(401).json({
-                status: 401,
+                status: 400,
                 message: "failed create data"
             })
         }
@@ -104,13 +104,16 @@ module.exports = {
     updatePengajuan: async (req, res) => {
         try{
             const { id } = req.params
-            const result = await Pengajuan.findByIdAndUpdate(id, 
+            
+            await Pengajuan.findByIdAndUpdate(id, 
                 {dokumen : req.body.dokumen})
+
+            const updatedDokumen = await Pengajuan.findById(id)
 
             res.status(202).json({
                 status: 202,
                 message: "berhasil update pengajuan",
-                data: result
+                data: updatedDokumen
             })
 
         }catch(err){
@@ -125,13 +128,14 @@ module.exports = {
         try{
             const { id } = req.params
 
-            const result = await Pengajuan.findByIdAndUpdate(id, 
+            await Pengajuan.findByIdAndUpdate(id, 
                 {status: req.body.status})
 
+            const updatedStatus = await Pengajuan.findById(id)
             res.status(201).json({
                 status: 201,
                 message: "status has been updated",
-                data: result
+                data: updatedStatus
             })
         }catch(err){
             res.status(404).json({
